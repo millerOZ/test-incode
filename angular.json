@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/bp-pibank-front-biometria",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
