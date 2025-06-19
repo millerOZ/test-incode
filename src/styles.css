@@ -1,0 +1,50 @@
+@font-face {
+    font-family: "Gilroy-Bold";
+    src: url("assets/fonts/gilroy-bold-webfont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Gilroy-Regular";
+    src: url("assets/fonts/Gilroy-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Gilroy-Semibold';
+    src: url('assets/fonts/Gilroy-Semibold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Gilroy-medium';
+    src: url('assets/fonts/gilroy-medium-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .btn-primary {
+    background-color: rgba(255, 220, 0, 1);
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: rgba(0, 40, 80, 1);
+    cursor: pointer;
+    font-family: "Gilroy-Bold", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    height: 48px;
+    letter-spacing: 0.5px;
+    min-width: 200px;
+    margin-top: auto;
+    margin-bottom: 32px;
+    padding: 8px 32px;
+    transition: all 0.3s ease;
+    width: 343px;
+  }
+  .module-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }

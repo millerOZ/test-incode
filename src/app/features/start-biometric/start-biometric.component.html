@@ -1,0 +1,64 @@
+@if(!isCameraIntroVisible){
+<div
+  class="container"
+  *ngIf="!isDesktop"
+>
+  <div class="content-center">
+    <img
+      class="camera-img"
+      src="assets/img/user-camera.svg"
+      alt="Cámara usuario"
+    />
+    <h1>Te pediremos algunas fotos</h1>
+    <ul>
+      <li>
+        <img
+          src="assets/img/Union.svg"
+          alt="Icono lugar cómodo"
+        />
+        <span>Hazte en un lugar cómodo e iluminado</span>
+      </li>
+      <li>
+        <img
+          src="assets/img/Icon-bio.svg"
+          alt="Icono expresión neutra"
+        />
+        <span>
+          Mantén una expresión neutra y quítate gafas oscuras, gorras o bufandas
+        </span>
+      </li>
+      <li>
+        <img
+          src="assets/img/Icon-ID.svg"
+          alt="Icono documento"
+        />
+        <span>Ten a la mano tu documento de identidad</span>
+      </li>
+    </ul>
+  </div>
+  <button
+    class="btn-primary"
+    (click)="onClick()"
+  >
+    Empezar
+  </button>
+</div>
+} @else {
+<div class="main">
+  <div
+    [ngSwitch]="step"
+    *ngIf="!isDesktop && session"
+  >
+    <front-back-id
+      *ngSwitchCase="0"
+      (nextStepEvent)="onStepEvent($event)"
+      [session]="session"
+    ></front-back-id>
+    <selfie
+      *ngSwitchCase="1"
+      (nextStepEvent)="onStepEvent($event)"
+      [session]="session"
+    ></selfie>
+  </div>
+</div>
+}

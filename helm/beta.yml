@@ -1,0 +1,85 @@
+##### Esto es editable por el programador ##########
+variables:
+  own:
+    config:
+      - name:  "CONNECT_TIMEOUT"
+        value: "10000"
+      - name:  "READ_TIMEOUT"
+        value: "10000"
+    secret: {}
+  common:
+    config:
+      - name: "ENVIRONMENT"
+      - name: "CONSUL_SVC_HOST"
+      - name: "CONSUL_SVC_PORT"
+      - name: "VAULT_SVC_HOST"
+      - name: "VAULT_SVC_PORT"
+    secret:
+      - name: "VAULT_SVC_TOKEN"
+
+#######Esto es editable por el DevOps#######
+
+global:
+  environment: "beta"
+  replicaCount: "1"
+  revisionHistoryLimit: "5"
+  minReadySeconds: "0"
+  version: "v1"
+
+container:
+  registry: ""
+  tag: ""
+  pullPolicy: "IfNotPresent"
+  livenessProbe:
+    exec:
+      command:
+        - /bin/sh
+        - -c
+        - |
+          if [ "$(curl -s http://localhost:8080/actuator/health | cut -d "{" -f 2 | cut -d "}" -f 1 | cut -d "," -f 1 )" != '"status":"UP"' ];then exit 1; fi
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    failureThreshold: 12
+  readinessProbe:
+    exec:
+      command:
+        - /bin/sh
+        - -c
+        - |
+          if [ "$(curl -s http://localhost:8080/actuator/health | cut -d "{" -f 2 | cut -d "}" -f 1 | cut -d "," -f 1 )" != '"status":"UP"' ];then exit 1; fi
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    failureThreshold: 12
+  resources:
+    requests:
+      cpu: 50m
+      memory: 384Mi
+    limits:
+      #cpu: 250m
+      memory: 512Mi
+  port:
+    - name: msa-port
+      servicePort: 80
+      containerPort: 8080
+      protocol: TCP
+  volumeMounts:
+    - name: init-sh
+      mountPath: /opt/build/init.sh
+      subPath: init.sh
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 1
+  targetMemory: 768Mi
+  targetCpu: 100m
+
+pdb:
+  minAvailable: 1
+
+volumes:
+  - name: init-sh
+    configMap:
+      name: configmap-pibank
+      items:
+        - key: init.sh
+          path: init.sh

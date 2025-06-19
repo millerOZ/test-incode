@@ -1,0 +1,10 @@
+<main class="main">
+  <div *ngIf="session && isDesktop">
+    <h1>!Muy bien! Ahora te pediremos algunas fotos</h1>
+    <p>Escanea el código QR para acceder desde tu dispositivo móvil.</p>
+    <qr
+      class="qr"
+      [session]="session"
+    ></qr>
+  </div>
+</main>

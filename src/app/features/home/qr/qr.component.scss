@@ -1,0 +1,105 @@
+.module-content {
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  width: 750px;
+  height: 567px;
+  border-radius: 25px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.module-content img{
+  position: absolute;
+  top: 345px;
+}
+
+:host ::ng-deep .dxTaMz {
+  color: rgba(131, 131, 131, 1);
+  size: 16px;
+  white-space: nowrap;
+  font-weight: 400;
+  text-align: left;
+  font-family: "Gilroy-Bold", sans-serif;
+  display: flex;
+  justify-content: end;
+  padding-top: 50px;
+}
+
+:host ::ng-deep .hvJvq {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+:host ::ng-deep .fYoiqP {
+  font-family: "Gilroy-regular", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+:host ::ng-deep .dkdMnC {
+  border-top: 1px solid white;
+}
+/* card */
+$image-max-width: 100%;
+$image-border-radius: 8px;
+$image-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+$image-margin: 20px;
+$image-transition: all 0.3s ease;
+
+// Mixin para centrado básico
+@mixin center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $image-max-width;
+  height: auto;
+}
+// Mixin para imagen flotante
+@mixin floating-image {
+  border-radius: $image-border-radius;
+  transition: $image-transition;
+}
+// 1. Imagen centrada básica
+
+/* float */
+// Variables para imagen flotante
+$overlay-bg: rgba(0, 0, 0, 0.7);
+$image-max-width: 80vw;
+$image-max-height: 80vh;
+$image-border-radius: 12px;
+$image-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+$image-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$floating-z-index: 9999;
+// Mixin para centrado absoluto
+@mixin absolute-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 56px;
+  //transform: translate(-50%, -50%);
+}
+// Mixin para imagen flotante
+@mixin floating-image-effect {
+  transition: $image-transition;
+  max-width: $image-max-width;
+  max-height: $image-max-height;
+  object-fit: contain;
+}
+
+.image-center {
+  @include absolute-center;
+  @include floating-image-effect;
+  z-index: $floating-z-index;
+  opacity: 0;
+  visibility: hidden;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -335%) scale(1);
+  }
+}
