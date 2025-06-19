@@ -115,16 +115,16 @@ export class LocationComponent {
     this._title.set(`Actualmente está en: ${locationData.city}, ${locationData.country}`);
     this._nameImg.set('location_2');
   }
-  processFingerprint(token: string) {
+ /*  processFingerprint(token: string) {
     this.incodeSDK.incode.sendFingerprint({ token }).catch((error: Error) => {
       console.log('error', error);
     });
-  }
+  } */
   onClick() {
     this.isDisabled = true;
     this.incodeSDK.createSession().subscribe((session) => {
       this.processGeolocation(session.token);
-      this.processFingerprint(session.token);
+     // this.processFingerprint(session.token);
     });
   }
   onClickCountryValid() {
