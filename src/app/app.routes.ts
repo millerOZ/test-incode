@@ -23,7 +23,7 @@ export const routes: Routes = [
   },
   {
     path: "suggestion",
-    loadComponent: () =>
+    loadChildren: () =>
       import("./features/start-biometric/start-biometric.component").then(
         (m) => m.SuggestionsCameraComponent
       ),
